@@ -1,0 +1,9 @@
+group,n,flop rate,age rule,logistic regression,gradient boosting
+outfield players,11130,0.142,0.612,0.652,0.662
+goalkeepers,861,0.396,0.554,0.709,0.711
+destination tier 1,5022,0.19,0.6,0.718,0.718
+destination tier 2,3146,0.154,0.589,0.674,0.697
+destination tier 3+,1824,0.112,0.589,0.692,0.681
+age ≤ 22,2450,0.264,0.64,0.686,0.697
+age 23-29,6963,0.131,0.518,0.653,0.652
+age 30+,2578,0.139,0.488,0.67,0.678

@@ -1,0 +1,10 @@
+id,hypothesis,expected,raw gap (pp),OR,lo,hi,p,q (BH),verdict
+H1,Under-23s flop more,OR > 1,13.917,1.629,1.472,1.802,0.0,0.0,supported
+H2,Less playing time last season -> more flops,OR < 1,-7.676,0.857,0.801,0.917,0.0,0.0,supported
+H3,Stepping up a tier raises risk,OR > 1,13.482,1.247,1.193,1.303,0.0,0.0,supported
+H4,Stronger destination club raises risk,OR > 1,5.364,1.34,1.293,1.389,0.0,0.0,supported
+H5,More same-position regulars raise risk,OR > 1,-6.381,1.043,1.001,1.086,0.044,0.044,supported
+H6,Paying above market value lowers risk,OR < 1,4.36,1.059,1.025,1.095,0.001,0.001,opposite effect
+H7,Higher-valued players flop less,OR < 1,-6.453,0.745,0.711,0.78,0.0,0.0,supported
+H8,Recent injuries raise risk,OR > 1,-0.566,1.055,1.021,1.09,0.001,0.001,supported
+H9,Goalkeepers flop more,OR > 1,23.143,4.086,3.604,4.632,0.0,0.0,supported

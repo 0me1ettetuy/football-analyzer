@@ -1,0 +1,13 @@
+step,rows,dropped
+all transfer-table rows,1101440,0
+after dropping exact duplicates,1101317,123
+valid dates (1990 - 2025),1095230,6087
+permanent transfers only,841413,253817
+destination is a real club,741264,100149
+not a move inside one club (reserve -> first team),645003,96261
+destination is not a youth / reserve side,570875,74128
+"summer window (Jun-Aug), 2012-2024",209950,360925
+value >= 250k or fee > 0,53743,156207
+player has dob and position,46582,7161
+age between 16 and 40,46544,38
+destination club-season present in performance data,41701,4843

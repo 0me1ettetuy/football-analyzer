@@ -1,0 +1,8 @@
+model,AUC,AUC 95% CI,PR-AUC,Brier,log-loss,precision @ top 10%,lift @ 10%
+average flop rate (no model),0.5,-,0.16,0.136,0.446,0.16,1.0
+age rule (younger = riskier),0.589,0.574-0.604,0.262,,,0.34,2.124
+playing-time rule,0.559,0.546-0.573,0.201,,,0.239,1.489
+tier-change rule (step up),0.54,0.529-0.552,0.181,,,0.215,1.343
+goalkeeper rule,0.563,0.555-0.572,0.202,,,0.34,2.124
+logistic regression,0.687,0.674-0.701,0.354,0.122,0.405,0.436,2.723
+gradient boosting (calibrated),0.694,0.681-0.707,0.36,0.122,0.401,0.448,2.796

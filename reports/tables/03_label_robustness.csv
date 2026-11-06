@@ -1,0 +1,5 @@
+label definition,test flop rate,n test,age rule,logistic regression,gradient boosting
+flop = plays < 25 %  (main definition),0.16,11991,0.589,0.687,0.694
+flop = plays < 15 %,0.113,11991,0.61,0.712,0.727
+flop = plays < 33 %,0.205,11991,0.576,0.671,0.679
+"plays < 25 %, zero-appearance rows removed",0.112,11343,0.568,0.669,0.669

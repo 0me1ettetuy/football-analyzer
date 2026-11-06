@@ -1,0 +1,13 @@
+{
+  "test_auc_gradient_boosting": 0.6941310617452947,
+  "test_auc_logistic_regression": 0.6871947383412417,
+  "test_auc_age_rule": 0.588817036600124,
+  "test_flop_rate": 0.16020348594779418,
+  "n_test": 11991,
+  "best_hyperparameters": {
+    "max_depth": 5,
+    "learning_rate": 0.03,
+    "max_iter": 150,
+    "min_samples_leaf": 50
+  }
+}
