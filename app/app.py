@@ -7,6 +7,7 @@ from pathlib import Path
 import json
 
 import joblib
+import altair as alt
 import numpy as np
 import pandas as pd
 import streamlit as st
@@ -164,25 +165,39 @@ with tab_score:
         # what moves this deal: put one input at a typical value and see how the risk changes
         typical = dict(inp)
         changes = {
-            "Age (typical 26)": dict(age=26.0),
-            "Position (typical: midfielder)": dict(position="Midfield", is_gk=0.0),
-            "Market value (typical EUR 1 m)": dict(log_value=float(np.log1p(1e6))),
-            "Fee (set to 0)": dict(fee_eur=0.0),
-            "Last-season playing time (typical 75 %)": dict(prev1_share=0.75),
-            "Tier move (none)": dict(orig_level=float(dest)),
-            "Destination club finish (middle)": dict(dest_rank_pct=0.5),
-            "Established players in position (typical 3)": dict(regulars=3.0),
-            "Injury days (none)": dict(inj_days=0.0),
+            "Age": dict(age=26.0),
+            "Position": dict(position="Midfield", is_gk=0.0),
+            "Market value": dict(log_value=float(np.log1p(1e6))),
+            "Fee": dict(fee_eur=0.0),
+            "Last-season playing time": dict(prev1_share=0.75),
+            "Tier move": dict(orig_level=float(dest)),
+            "Destination club finish": dict(dest_rank_pct=0.5),
+            "Established players in position": dict(regulars=3.0),
+            "Injury days": dict(inj_days=0.0),
         }
         rows = []
         for label, change in changes.items():
-            alt = {**typical, **change}
-            rows.append({"input": label, "effect on risk (pp)": round((risk - risk_of(alt)) * 100, 1)})
+            variant = {**typical, **change}
+            rows.append({"input": label, "effect on risk (pp)": round((risk - risk_of(variant)) * 100, 1)})
         eff = pd.DataFrame(rows).sort_values("effect on risk (pp)")
         st.markdown("**What moves this deal's risk?** Percentage points of risk added (+) or removed (−) compared with a "
                     "typical value of each input, one at a time.")
-        st.bar_chart(eff.set_index("input"), horizontal=True, height=330)
-        st.caption("One-at-a-time changes do not add up exactly, because the model combines inputs. Read it as a guide.")
+        eff["direction"] = np.where(eff["effect on risk (pp)"] >= 0, "adds risk", "lowers risk")
+        chart = (
+            alt.Chart(eff).mark_bar(size=16)
+            .encode(
+                x=alt.X("effect on risk (pp):Q", title="percentage points of risk"),
+                y=alt.Y("input:N", sort=alt.EncodingSortField("effect on risk (pp)", order="descending"), title=None,
+                        axis=alt.Axis(labelLimit=400)),
+                color=alt.Color("direction:N", legend=None,
+                                scale=alt.Scale(domain=["adds risk", "lowers risk"], range=["#eb6834", "#2a78d6"])),
+                tooltip=["input", "effect on risk (pp)"],
+            ).properties(height=300)
+        )
+        st.altair_chart(chart, width="stretch")
+        st.caption("Compared with: age 26, a midfielder, market value EUR 1 m, no fee, 75 % of matches played, no tier move, "
+                   "a mid-table destination, 3 established players in the position, no injuries. One-at-a-time changes do "
+                   "not add up exactly, because the model combines inputs. Read it as a guide.")
 
     st.divider()
     st.subheader("What happened to similar deals?")
